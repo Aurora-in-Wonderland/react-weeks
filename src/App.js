@@ -1,8 +1,17 @@
 import "./App.css";
 import { useState } from "react";
+import { styled } from "styled-components";
+
 import Nav from "./components/Nav";
 import InputForm from "./components/InputForm";
 import ToDoList from "./components/ToDoList";
+
+const Flex = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+`;
 
 function App() {
     const [todos, setTodos] = useState([
@@ -29,16 +38,21 @@ function App() {
     const handleAdd = (todo) => {
         setTodos([...todos, todo]);
     };
+
     return (
         <>
             <Nav />
             <InputForm onAdd={handleAdd} />
-            {todos.map((item) => (
-                <ToDoList
-                    key={item.id}
-                    todo={item}
-                />
-            ))}
+            <h2>WORKING🔥</h2>
+            <Flex>
+                {todos.map((item) => (
+                    <ToDoList
+                        key={item.id}
+                        todo={item}
+                    />
+                ))}
+            </Flex>
+            <h2>DONE✨</h2>
         </>
     );
 }
