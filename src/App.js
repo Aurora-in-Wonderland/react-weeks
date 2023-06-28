@@ -1,6 +1,7 @@
 import "./App.css";
 import { useState } from "react";
 import Nav from "./components/Nav";
+import InputForm from "./components/InputForm";
 import ToDoList from "./components/ToDoList";
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     return (
         <>
             <Nav />
+            <InputForm />
             {todos.map((item) => (
                 <ToDoList
                     key={item.id}
