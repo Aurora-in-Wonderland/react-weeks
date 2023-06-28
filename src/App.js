@@ -39,6 +39,11 @@ function App() {
         setTodos([...todos, todo]);
     };
 
+    const handleDelete = (deleted) => {
+        setTodos([...todos.filter((todo) => todo.id !== deleted.id)]);
+        // console.log(deleted);
+    };
+
     return (
         <>
             <Nav />
@@ -49,6 +54,7 @@ function App() {
                     <ToDoList
                         key={item.id}
                         todo={item}
+                        onDelete={handleDelete}
                     />
                 ))}
             </Flex>

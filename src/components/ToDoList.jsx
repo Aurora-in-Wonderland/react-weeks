@@ -64,8 +64,9 @@ const CompletedButton = styled.button`
     }
 `;
 
-export default function ToDoList({ todo }) {
-    console.log(todo);
+export default function ToDoList({ todo, onDelete }) {
+    const handleDelete = () => onDelete(todo);
+
     return (
         <>
             <Container>
@@ -74,7 +75,12 @@ export default function ToDoList({ todo }) {
                     <li>{todo.text}</li>
                 </ul>
                 <Buttons>
-                    <DeletedButton>취소</DeletedButton>
+                    <DeletedButton
+                        todo={todo}
+                        onClick={handleDelete}
+                    >
+                        취소
+                    </DeletedButton>
                     <CompletedButton>완료</CompletedButton>
                 </Buttons>
             </Container>
