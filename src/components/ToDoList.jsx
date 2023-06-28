@@ -26,10 +26,10 @@ const Buttons = styled.div`
     justify-content: space-around;
 `;
 
-const DeletedButton = styled.button`
+const Button = styled.button`
     width: 100px;
     background: white;
-    border: 3px solid red;
+    border: 3px solid ${({ color }) => color};
     border-radius: 10px;
     text-align: center;
     font-size: 15px;
@@ -39,28 +39,9 @@ const DeletedButton = styled.button`
     cursor: pointer;
 
     &:hover {
-        background: red;
+        background: ${({ color }) => color};
         color: white;
-        transition: 0.3s;
-    }
-`;
-
-const CompletedButton = styled.button`
-    width: 100px;
-    background: white;
-    border: 3px solid #145f37;
-    border-radius: 10px;
-    text-align: center;
-    font-size: 15px;
-    font-weight: bold;
-    margin: 10px;
-    padding: 7.5px;
-    cursor: pointer;
-
-    &:hover {
-        background: #145f37;
-        color: white;
-        transition: 0.3s;
+        transition: 0.2s;
     }
 `;
 
@@ -83,18 +64,20 @@ export default function ToDoList({ todo, onDelete, onUpdate }) {
                     <li>{todo.text}</li>
                 </ul>
                 <Buttons>
-                    <DeletedButton
+                    <Button
                         todo={todo}
                         onClick={handleDelete}
+                        color="red"
                     >
                         취소
-                    </DeletedButton>
-                    <CompletedButton
+                    </Button>
+                    <Button
                         todo={todo}
                         onClick={handleUpdate}
+                        color="#145f37"
                     >
-                        완료
-                    </CompletedButton>
+                        {todo.status === "active" ? "완료" : "다시하기"}
+                    </Button>
                 </Buttons>
             </Container>
         </>

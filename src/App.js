@@ -50,7 +50,7 @@ function App() {
                 todo.id === updated.id ? { ...todo, status: todo.status === "active" ? "completed" : "active" } : todo
             ),
         ]);
-        console.log(updated);
+        // console.log(updated);
     };
 
     return (
