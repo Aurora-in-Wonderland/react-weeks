@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 
 const Form = styled.div`
@@ -30,7 +30,20 @@ const Form = styled.div`
     }
 `;
 
-export default function InputForm() {
+export default function InputForm({ onAdd }) {
+    const [title, setTitle] = useState("");
+    const [text, setText] = useState("");
+    const handleTitleChange = (event) => setTitle(event.target.value);
+    const handleTextChange = (event) => setText(event.target.value);
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        onAdd({ id: Date.now(), title, text, status: "active" });
+        if (title.trim().length === 0 && text.trim().length === 0) {
+            alert("내용을 입력하세요");
+        }
+        setText("");
+        setTitle("");
+    };
     return (
         <div>
             <Form>
@@ -38,13 +51,17 @@ export default function InputForm() {
                 <input
                     type="text"
                     placeholder="제목을 입력해주세요"
+                    value={title}
+                    onChange={handleTitleChange}
                 ></input>
                 <span>내용: </span>
                 <input
                     type="text"
                     placeholder="내용을 입력해주세요"
+                    value={text}
+                    onChange={handleTextChange}
                 ></input>
-                <button>입력</button>
+                <button onClick={handleSubmit}>입력</button>
             </Form>
         </div>
     );

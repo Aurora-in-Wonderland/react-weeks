@@ -25,10 +25,14 @@ function App() {
             status: "active",
         },
     ]);
+
+    const handleAdd = (todo) => {
+        setTodos([...todos, todo]);
+    };
     return (
         <>
             <Nav />
-            <InputForm />
+            <InputForm onAdd={handleAdd} />
             {todos.map((item) => (
                 <ToDoList
                     key={item.id}
