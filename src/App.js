@@ -44,6 +44,15 @@ function App() {
         // console.log(deleted);
     };
 
+    const handleUpdate = (updated) => {
+        setTodos([
+            ...todos.map((todo) =>
+                todo.id === updated.id ? { ...todo, status: todo.status === "active" ? "completed" : "active" } : todo
+            ),
+        ]);
+        console.log(updated);
+    };
+
     return (
         <>
             <Nav />
@@ -55,6 +64,7 @@ function App() {
                         key={item.id}
                         todo={item}
                         onDelete={handleDelete}
+                        onUpdate={handleUpdate}
                     />
                 ))}
             </Flex>

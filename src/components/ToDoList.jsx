@@ -64,8 +64,16 @@ const CompletedButton = styled.button`
     }
 `;
 
-export default function ToDoList({ todo, onDelete }) {
+export default function ToDoList({ todo, onDelete, onUpdate }) {
     const handleDelete = () => onDelete(todo);
+
+    const handleUpdate = () => {
+        const updatedTodo = {
+            ...todo,
+            status: todo.status === "active" ? "completed" : "active",
+        };
+        onUpdate(updatedTodo);
+    };
 
     return (
         <>
@@ -81,7 +89,12 @@ export default function ToDoList({ todo, onDelete }) {
                     >
                         취소
                     </DeletedButton>
-                    <CompletedButton>완료</CompletedButton>
+                    <CompletedButton
+                        todo={todo}
+                        onClick={handleUpdate}
+                    >
+                        완료
+                    </CompletedButton>
                 </Buttons>
             </Container>
         </>
