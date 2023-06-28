@@ -7,6 +7,7 @@ const Container = styled.div`
     border: 5px solid #145f37;
     border-radius: 20px;
     margin: 30px 0;
+
     ul {
         padding: 0;
         margin: 30px 0 30px 15px;
@@ -63,13 +64,14 @@ const CompletedButton = styled.button`
     }
 `;
 
-export default function ToDoList() {
+export default function ToDoList({ todo }) {
+    console.log(todo);
     return (
         <>
             <Container>
                 <ul>
-                    <li>제목</li>
-                    <li>내용</li>
+                    <li>{todo.title}</li>
+                    <li>{todo.text}</li>
                 </ul>
                 <Buttons>
                     <DeletedButton>취소</DeletedButton>
