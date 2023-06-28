@@ -59,16 +59,30 @@ function App() {
             <InputForm onAdd={handleAdd} />
             <h2>WORKING🔥</h2>
             <Flex>
-                {todos.map((item) => (
-                    <ToDoList
-                        key={item.id}
-                        todo={item}
-                        onDelete={handleDelete}
-                        onUpdate={handleUpdate}
-                    />
-                ))}
+                {todos.map((item) =>
+                    item.status === "active" ? (
+                        <ToDoList
+                            key={item.id}
+                            todo={item}
+                            onDelete={handleDelete}
+                            onUpdate={handleUpdate}
+                        />
+                    ) : null
+                )}
             </Flex>
             <h2>DONE✨</h2>
+            <Flex>
+                {todos.map((item) =>
+                    item.status === "completed" ? (
+                        <ToDoList
+                            key={item.id}
+                            todo={item}
+                            onDelete={handleDelete}
+                            onUpdate={handleUpdate}
+                        />
+                    ) : null
+                )}
+            </Flex>
         </>
     );
 }
