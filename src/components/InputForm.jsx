@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 
-const Form = styled.div`
+// not flex use grid
+const Form = styled.form`
     height: 60px;
     background: #f2f1df;
     border-radius: 0 0 20px 20px;
@@ -46,7 +47,7 @@ export default function InputForm({ onAdd }) {
     };
     return (
         <div>
-            <Form>
+            <Form onSubmit={handleSubmit}>
                 <span>제목: </span>
                 <input
                     type="text"
@@ -61,7 +62,7 @@ export default function InputForm({ onAdd }) {
                     value={text}
                     onChange={handleTextChange}
                 ></input>
-                <button onClick={handleSubmit}>입력</button>
+                <button type="submit">입력</button>
             </Form>
         </div>
     );
