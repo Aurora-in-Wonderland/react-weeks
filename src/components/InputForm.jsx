@@ -41,18 +41,21 @@ export default function InputForm() {
 
     const handleTitleChange = (event) => {
         setTitle(event.target.value);
+        console.log(event.target.value);
     };
     const handleTextChange = (event) => {
         setText(event.target.value);
+        console.log(event.target.value);
     };
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        if (title === "") return;
         dispatch(addTodo({ id: Date.now(), title, text, status: "active" }));
         // dispatch가 실행됨으로서 컴포넌트가 구독하고 있는 상태가 변경되어서 해당 컴포넌트가 다시생성.
         console.log(todos);
+        if (title.trim().length === 0 && text.trim().length === 0) {
+            alert("내용을 입력하세요");
+        }
         setText("");
         setTitle("");
     };

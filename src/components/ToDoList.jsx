@@ -1,4 +1,7 @@
 import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { addTodo } from "../redux/modules/todos";
+
 import styled from "styled-components";
 
 const Container = styled.div`
@@ -13,6 +16,7 @@ const Container = styled.div`
         margin: 30px 0 30px 15px;
         list-style-type: none;
     }
+
     li:nth-child(1) {
         font-size: 25px;
         font-weight: bold;
@@ -45,41 +49,38 @@ const Button = styled.button`
     }
 `;
 
-export default function ToDoList({ todo, onDelete, onUpdate }) {
-    const handleDelete = () => onDelete(todo);
+export default function ToDoList() {
+    const todos = useSelector((state) => {
+        return state.todos;
+    });
+    const dispatch = useDispatch();
 
-    const handleUpdate = () => {
-        const updatedTodo = {
-            ...todo,
-            status: todo.status === "active" ? "completed" : "active",
-        };
-        onUpdate(updatedTodo);
-    };
+    // const handleDelete = () => onDelete(todo);
+
+    // const handleUpdate = () => {
+    //     const updatedTodo = {
+    //         ...todo,
+    //         status: todo.status === "active" ? "completed" : "active",
+    //     };
+    //     onUpdate(updatedTodo);
+    // };
+    // console.log(todos);
 
     return (
         <>
-            <Container>
-                <ul>
-                    <li>{todo.title}</li>
-                    <li>{todo.text}</li>
-                </ul>
-                <Buttons>
-                    <Button
-                        todo={todo}
-                        onClick={handleDelete}
-                        color="red"
-                    >
-                        취소
-                    </Button>
-                    <Button
-                        todo={todo}
-                        onClick={handleUpdate}
-                        color="#145f37"
-                    >
-                        {todo.status === "active" ? "완료" : "다시하기"}
-                    </Button>
-                </Buttons>
-            </Container>
+            {todos.map((todo) => (
+                <Container key={todo.id}>
+                    <ul>
+                        <li>{todo.title}</li>
+                        <li>{todo.text}</li>
+                    </ul>
+
+                    <Buttons>
+                        <Button color="red">취소</Button>
+                        <Button color="#145f37">{todo.status === "active" ? "완료" : "다시하기"}</Button>
+                    </Buttons>
+                </Container>
+            ))}
         </>
     );
 }

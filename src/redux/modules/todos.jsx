@@ -32,11 +32,6 @@ const initialState = [
 const todos = (state = initialState, action) => {
     switch (action.type) {
         case ADD_TODO:
-            // const retval = {
-            //     ...state,
-            //     todos: [...state.todos, action.payload],
-            // };
-            // console.log(retval);
             return [...state, action.payload];
         default:
             return state;
