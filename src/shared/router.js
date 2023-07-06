@@ -11,7 +11,7 @@ const Router = () => {
                     element={<Home />}
                 />
                 <Route
-                    path="/:id"
+                    path="/detail/:id"
                     element={<Detail />}
                 />
             </Routes>

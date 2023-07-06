@@ -1,9 +1,12 @@
-import React from 'react'
+import React from "react";
+import DetailToDoList from "../components/DetailToDoList";
 
 function Detail() {
-  return (
-    <div>Detail</div>
-  )
+    return (
+        <>
+            <DetailToDoList />
+        </>
+    );
 }
 
-export default Detail
+export default Detail;

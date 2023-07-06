@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { addTodo } from "../redux/modules/todos";
+import { addTodo, deletedTodo, updatedTodo } from "../redux/modules/todos";
+import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 
@@ -49,38 +50,50 @@ const Button = styled.button`
     }
 `;
 
-export default function ToDoList() {
-    const todos = useSelector((state) => {
-        return state.todos;
-    });
+export default function ToDoList({ status }) {
+    const todos = useSelector((state) => state.todos);
     const dispatch = useDispatch();
-
-    // const handleDelete = () => onDelete(todo);
-
-    // const handleUpdate = () => {
-    //     const updatedTodo = {
-    //         ...todo,
-    //         status: todo.status === "active" ? "completed" : "active",
-    //     };
-    //     onUpdate(updatedTodo);
-    // };
-    // console.log(todos);
 
     return (
         <>
-            {todos.map((todo) => (
-                <Container key={todo.id}>
-                    <ul>
-                        <li>{todo.title}</li>
-                        <li>{todo.text}</li>
-                    </ul>
-
-                    <Buttons>
-                        <Button color="red">취소</Button>
-                        <Button color="#145f37">{todo.status === "active" ? "완료" : "다시하기"}</Button>
-                    </Buttons>
-                </Container>
-            ))}
+            {todos
+                .filter((todo) => todo.status === status)
+                .map((todo) => (
+                    <Container key={todo.id}>
+                        <Link to={`/detail/${todo.id}`}>
+                            <ul>
+                                <li>{todo.title}</li>
+                                <li>{todo.text}</li>
+                            </ul>
+                        </Link>
+                        <Buttons>
+                            <Button
+                                color="red"
+                                onClick={() => {
+                                    // dispatch(deletedTodo(id))
+                                    dispatch({
+                                        type: "DELETED_TODO",
+                                        payload: todo.id,
+                                    });
+                                }}
+                            >
+                                삭제
+                            </Button>
+                            <Button
+                                color="#145f37"
+                                onClick={() => {
+                                    // dispatch(updatedTodo(id))
+                                    dispatch({
+                                        type: "UPDATED_TODO",
+                                        payload: todo.id,
+                                    });
+                                }}
+                            >
+                                {todo.status === "active" ? "완료" : "다시하기"}
+                            </Button>
+                        </Buttons>
+                    </Container>
+                ))}
         </>
     );
 }
