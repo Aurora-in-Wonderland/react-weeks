@@ -15,7 +15,7 @@ const CustomButton = styled.button`
     }
 `;
 
-export default function Button({ size, name, status }) {
+export default function Button({ size, name, status, showModal, clickModal }) {
     if (status === "primary") {
         if (size === "big") {
             return (
@@ -26,6 +26,7 @@ export default function Button({ size, name, status }) {
                     color="rgb(0, 0, 0)"
                     width="200"
                     height="50"
+                    onClick={showModal}
                 >
                     {name}
                 </CustomButton>
@@ -39,6 +40,7 @@ export default function Button({ size, name, status }) {
                     color="rgb(0, 0, 0)"
                     width="130"
                     height="45"
+                    onClick={showModal}
                 >
                     {name}
                 </CustomButton>
@@ -52,6 +54,7 @@ export default function Button({ size, name, status }) {
                     color="rgb(0, 0, 0)"
                     width="100"
                     height="40"
+                    onClick={showModal}
                 >
                     {name}
                 </CustomButton>
@@ -63,10 +66,11 @@ export default function Button({ size, name, status }) {
                 <CustomButton
                     bgcolor="white"
                     activecolor="rgb(229, 229, 229)"
-                    border="3px solid rgb(215, 101, 75)"
+                    border="3px solid rgb(250, 177, 160)"
                     color="rgb(214, 48, 49)"
                     width="200"
                     height="50"
+                    onClick={clickModal}
                 >
                     {name}
                 </CustomButton>
@@ -78,8 +82,9 @@ export default function Button({ size, name, status }) {
                     color="rgb(214, 48, 49)"
                     activecolor="rgb(215, 101, 75)"
                     border="none"
-                    width="150"
+                    width="130"
                     height="45"
+                    onClick={clickModal}
                 >
                     {name}
                 </CustomButton>
@@ -93,6 +98,7 @@ export default function Button({ size, name, status }) {
                     border="none"
                     width="100"
                     height="40"
+                    onClick={showModal}
                 >
                     {name}
                 </CustomButton>
@@ -100,5 +106,5 @@ export default function Button({ size, name, status }) {
         }
     }
 
-    return <>{/* <CustomButton>{name}</CustomButton> */}</>;
+    return <></>;
 }
