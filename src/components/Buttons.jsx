@@ -1,52 +1,61 @@
 import React from "react";
-import styled from "styled-components";
 import Button from "./Button";
+import styled from "styled-components";
 
-const PrimaryButtons = styled.div`
-    margin: 30px 0;
+const StButtonContainer = styled.div`
+margin: 10px;
 `;
-const NegativeButtons = styled.div`
-    margin: 30px 0;
-`;
+
 
 export default function Buttons() {
+    const alertMassage = () => {
+        alert("버튼을 만들어 보세요.");
+    };
+
+    const promptMassage = () => {
+        prompt("어렵나요?", "");
+        console.log(promptMassage());
+    };
+
     return (
-        <>
+        <div>
             <h1>Button</h1>
-            <PrimaryButtons>
+            <StButtonContainer>
                 <Button
-                    size="big"
+                    color="green"
+                    size="large"
                     name="Large Primary Button"
-                    status="primary"
+                    onClick={alertMassage}
                 />
                 <Button
+                    color="green"
                     size="medium"
-                    name="Medium"
-                    status="primary"
+                    name="meidium"
                 />
                 <Button
+                    color="green"
                     size="small"
-                    name="Small"
-                    status="primary"
+                    name="small"
                 />
-            </PrimaryButtons>
-            <NegativeButtons>
+            </StButtonContainer>
+            <StButtonContainer>
                 <Button
-                    size="big"
-                    name="Large Primary Button"
-                    status="negative"
+                    color="red"
+                    size="large"
+                    name="Large Negative Button"
+                    onClick={promptMassage}
                 />
                 <Button
+                    color="red"
                     size="medium"
-                    name="Medium"
-                    status="negative"
+                    name="meidium"
                 />
                 <Button
+                    color="red"
                     size="small"
-                    name="Small"
-                    status="negative"
+                    name="small"
                 />
-            </NegativeButtons>
-        </>
+            </StButtonContainer>
+        </div>
     );
 }

@@ -1,110 +1,110 @@
 import React from "react";
-import styled from "styled-components";
+import { styled } from "styled-components";
 
-const CustomButton = styled.button`
-    width: ${({ width }) => width}px;
-    height: ${({ height }) => height}px;
-    background-color: ${({ bgcolor }) => bgcolor};
-    color: ${({ color }) => color};
-    border: ${({ border }) => border};
-    border-radius: 8px;
-    margin-right: 6px;
-    cursor: pointer;
-    &:active {
-        background-color: ${({ activecolor }) => activecolor};
-    }
-`;
-
-export default function Button({ size, name, status, showModal, clickModal }) {
-    if (status === "primary") {
-        if (size === "big") {
+export default function Button({ size, color, name, onClick }) {
+    if (color === "green") {
+        if (size === "large") {
             return (
-                <CustomButton
+                <StAllButton
+                    width="200"
+                    height="50"
+                    color="black"
                     bgcolor="white"
-                    activecolor="rgb(229, 229, 229)"
                     border="3px solid rgb(85, 239, 196)"
-                    color="rgb(0, 0, 0)"
-                    width="200"
-                    height="50"
-                    onClick={showModal}
+                    hovercolor="rgb(240, 240, 240)"
+                    onClick={onClick}
                 >
                     {name}
-                </CustomButton>
+                </StAllButton>
             );
         } else if (size === "medium") {
             return (
-                <CustomButton
-                    bgcolor="rgb(85, 239, 196)"
-                    activecolor="rgb(52, 155, 126)"
-                    border="none"
-                    color="rgb(0, 0, 0)"
+                <StAllButton
                     width="130"
                     height="45"
-                    onClick={showModal}
+                    color="black"
+                    bgcolor="rgb(85, 239, 196)"
+                    border="none"
+                    hovercolor="rgb(61, 162, 134)"
+                    onClick={onClick}
                 >
                     {name}
-                </CustomButton>
+                </StAllButton>
             );
         } else if (size === "small") {
             return (
-                <CustomButton
-                    bgcolor="rgb(85, 239, 196)"
-                    activecolor="rgb(52, 155, 126)"
-                    border="none"
-                    color="rgb(0, 0, 0)"
+                <StAllButton
                     width="100"
                     height="40"
-                    onClick={showModal}
+                    color="black"
+                    bgcolor="rgb(85, 239, 196)"
+                    border="none"
+                    hovercolor="rgb(61, 162, 134)"
+                    onClick={onClick}
                 >
                     {name}
-                </CustomButton>
+                </StAllButton>
             );
         }
-    } else if (status === "negative") {
-        if (size === "big") {
+    } else if (color === "red") {
+        if (size === "large") {
             return (
-                <CustomButton
-                    bgcolor="white"
-                    activecolor="rgb(229, 229, 229)"
-                    border="3px solid rgb(250, 177, 160)"
-                    color="rgb(214, 48, 49)"
+                <StAllButton
                     width="200"
                     height="50"
-                    onClick={clickModal}
+                    color="rgb(214, 48, 49)"
+                    bgcolor="white"
+                    border="3px solid rgb(250, 177, 160)"
+                    hovercolor="rgb(240, 240, 240)"
+                    onClick={onClick}
                 >
                     {name}
-                </CustomButton>
+                </StAllButton>
             );
         } else if (size === "medium") {
             return (
-                <CustomButton
-                    bgcolor="rgb(250, 177, 160)"
-                    color="rgb(214, 48, 49)"
-                    activecolor="rgb(215, 101, 75)"
-                    border="none"
+                <StAllButton
                     width="130"
                     height="45"
-                    onClick={clickModal}
+                    color="rgb(214, 48, 49)"
+                    bgcolor="rgb(250, 177, 160)"
+                    border="none"
+                    hovercolor="rgb(221, 121, 99);"
+                    onClick={onClick}
                 >
                     {name}
-                </CustomButton>
+                </StAllButton>
             );
         } else if (size === "small") {
             return (
-                <CustomButton
-                    bgcolor="rgb(250, 177, 160)"
-                    color="rgb(214, 48, 49)"
-                    activecolor="rgb(215, 101, 75)"
-                    border="none"
+                <StAllButton
                     width="100"
                     height="40"
-                    onClick={showModal}
+                    color="rgb(214, 48, 49)"
+                    bgcolor="rgb(250, 177, 160)"
+                    border="none"
+                    hovercolor="rgb(221, 121, 99);"
+                    onClick={onClick}
                 >
                     {name}
-                </CustomButton>
+                </StAllButton>
             );
         }
     }
-
     return <></>;
 }
+
+const StAllButton = styled.button`
+    margin-right: 10px;
+    width: ${({ width }) => width}px;
+    height: ${({ height }) => height}px;
+    color: ${({ color }) => color};
+    background-color: ${({ bgcolor }) => bgcolor};
+    border-radius: 8px;
+    cursor: pointer;
+    border: ${({ border }) => border};
+
+    &:hover {
+        background-color: ${({ hovercolor }) => hovercolor};
+    }
+`;

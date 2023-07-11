@@ -1,17 +1,17 @@
 import "./App.css";
 import Buttons from "./components/Buttons";
-import Modals from "./components/Modals";
 import Input from "./components/Input";
-import Select from "./components/Select";
+import Modals from "./components/Modals";
+import Selects from "./components/Selects";
 
 function App() {
     return (
-        <>
+        <div>
             <Buttons />
             <Input />
             <Modals />
-            <Select />
-        </>
+            <Selects />
+        </div>
     );
 }
 

@@ -1,26 +1,7 @@
-// import React from "react";
-// import styled from "styled-components";
-// import { useEffect, useRef } from "react";
-
-// const Container = styled.div`
-//     /* 모달창 크기 */
-//     width: 500px;
-//     height: 300px;
-
-//     /* left: 50%;
-//     top: 50%;
-//     transform: translate(-50%, -50%); */
-
-//     border-radius: 12px;
-//     box-sizing: border-box;
-//     padding: 24px;
-//     background-color: pink;
-// `;
-
 import React, { useEffect, useRef } from "react";
 import styled from "styled-components";
 
-const ModalOverlay = styled.div`
+const StModalOverlay = styled.div`
     position: fixed;
     top: 0;
     left: 0;
@@ -35,26 +16,35 @@ const ModalContainer = styled.div`
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
-    height: 300px;
+    width: 300px;
+    height: 200px;
     border-radius: 12px;
     box-sizing: border-box;
     padding: 24px;
-    background-color: pink;
+    background-color: white;
     z-index: 10000;
 `;
 
-export default function Modal({ setClickOpen }) {
+const CloseButton = styled.button`
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    border: 1px solid rgb(221, 221, 221);
+    cursor: pointer;
+    margin-left: 200px;
+`;
+
+export default function OverLayModal({ setLargeModal }) {
     const modalRef = useRef(null);
 
     const closeModal = () => {
-        setClickOpen(false);
+        setLargeModal(false);
     };
 
     useEffect(() => {
         const handleOutsideClick = (event) => {
             if (modalRef.current && !modalRef.current.contains(event.target)) {
-                setClickOpen();
+                setLargeModal();
             }
         };
 
@@ -62,14 +52,14 @@ export default function Modal({ setClickOpen }) {
         return () => {
             document.removeEventListener("mousedown", handleOutsideClick);
         };
-    }, [setClickOpen]);
+    }, [setLargeModal]);
 
     return (
-        <ModalOverlay>
+        <StModalOverlay>
             <ModalContainer ref={modalRef}>
-                <button onClick={closeModal}>X</button>
-                <p>모달 창입니다.</p>
+                <CloseButton onClick={closeModal}>X</CloseButton>
+                <p>닫기 버튼 1개가 있고, 외부 영역을 누르면 모달이 닫혀요.</p>
             </ModalContainer>
-        </ModalOverlay>
+        </StModalOverlay>
     );
 }
